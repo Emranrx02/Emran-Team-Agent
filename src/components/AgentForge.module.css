@@ -1,7 +1,7 @@
-.app { display: flex; height: 100vh; width: 100vw; overflow: hidden; }
+.app { display: flex; min-height: 100dvh; width: 100vw; overflow: hidden; }
 
 /* Sidebar */
-.sidebar { width: 260px; min-width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; height: 100vh; }
+.sidebar { width: 260px; min-width: 260px; background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; min-height: 100dvh; }
 .sidebarHeader { padding: 20px 16px 14px; border-bottom: 1px solid var(--border); }
 .logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
 .logoIcon { width: 34px; height: 34px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 17px; }
@@ -25,13 +25,13 @@
 .link { color: var(--accent2); cursor: pointer; text-decoration: underline; }
 
 /* Main */
-.main { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+.main { flex: 1; display: flex; flex-direction: column; min-height: 100dvh; overflow: hidden; }
 .empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
 .emptyIcon { font-size: 52px; opacity: 0.35; }
 .emptyTitle { font-size: 18px; font-weight: 700; color: var(--muted2); }
 .emptySub { font-size: 13px; color: var(--muted); text-align: center; max-width: 280px; line-height: 1.6; }
 
-.projectView { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+.projectView { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; }
 .topbar { padding: 13px 22px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; background: var(--surface); flex-shrink: 0; }
 .topbarName { font-size: 15px; font-weight: 700; flex: 1; }
 .badge { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
@@ -105,9 +105,19 @@
 
 /* Mobile */
 @media (max-width: 640px) {
-  .sidebar { width: 200px; min-width: 200px; }
+  .app { flex-direction: column; overflow: auto; }
+  .sidebar { width: 100%; min-width: 0; min-height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+  .sidebarHeader { padding: 14px; }
+  .projectList { max-height: 32dvh; }
+  .main { min-height: calc(100dvh - 220px); }
+  .projectView { min-height: calc(100dvh - 220px); }
+  .topbar { padding: 12px 14px; flex-wrap: wrap; }
+  .tabs { padding: 0 14px; }
+  .tab { flex: 1; text-align: center; }
   .panel { padding: 14px; }
   .chatMessages { padding: 12px 14px; }
-  .chatInputArea { padding: 10px 12px; }
-  .msg { max-width: 90%; }
+  .chatInputArea { padding: 10px 12px; flex-direction: column; align-items: stretch; }
+  .btnSend { width: 100%; }
+  .msg { max-width: 100%; }
+  .modal { width: min(420px, 92vw); padding: 20px; }
 }

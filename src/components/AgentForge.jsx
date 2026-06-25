@@ -39,6 +39,39 @@ function buildSystem(p, files) {
   return s
 }
 
+function PasswordModal({ onSubmit, error, loading }) {
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = () => {
+    if (!password.trim()) return
+    onSubmit(password.trim())
+  }
+
+  return (
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
+        <h2>Protected Workspace</h2>
+        <p>Enter the project password to access Emran's community management agent.</p>
+        <input
+          className={styles.field}
+          type="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+          autoFocus
+        />
+        {error && <div className={styles.trainStatus}>{error}</div>}
+        <div className={styles.modalActions}>
+          <button className={styles.btnCreate} onClick={handleSubmit} disabled={loading}>
+            {loading ? 'Checking…' : 'Unlock'}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function NewProjectModal({ onClose, onCreate }) {
   const [name, setName] = useState('')
   const handle = () => { if (!name.trim()) return; onCreate(name.trim()); onClose() }
@@ -59,7 +92,7 @@ function NewProjectModal({ onClose, onCreate }) {
   )
 }
 
-function Sidebar({ projects, currentId, onSelect, onNew, onDelete, onChangeKey }) {
+function Sidebar({ projects, currentId, onSelect, onNew, onDelete }) {
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebarHeader}>
@@ -84,8 +117,7 @@ function Sidebar({ projects, currentId, onSelect, onNew, onDelete, onChangeKey }
         ))}
       </div>
       <div className={styles.sidebarFooter}>
-        OpenAI API &nbsp;·&nbsp;
-        <span className={styles.link} onClick={onChangeKey}>Change API Key</span>
+        Protected workspace · Projects stay in this browser
       </div>
     </div>
   )
@@ -246,12 +278,51 @@ export default function AgentForge() {
   const [showNewModal, setShowNewModal] = useState(false)
   const [uploadedFiles, setUploadedFiles] = useState({})
   const [mounted, setMounted] = useState(false)
+  const [isUnlocked, setIsUnlocked] = useState(false)
+  const [authLoading, setAuthLoading] = useState(true)
+  const [authError, setAuthError] = useState('')
 
   useEffect(() => {
     setMounted(true)
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth', { method: 'GET' })
+        if (res.ok) {
+          setIsUnlocked(true)
+        }
+      } catch {}
+      setAuthLoading(false)
+    }
+
+    checkAuth()
   }, [])
 
   if (!mounted) return null
+
+  if (authLoading) return null
+
+  if (!isUnlocked) {
+    const unlock = async (password) => {
+      setAuthError('')
+      try {
+        const res = await fetch('/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password }),
+        })
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}))
+          setAuthError(data?.error?.message || 'Incorrect password')
+          return
+        }
+        setIsUnlocked(true)
+      } catch {
+        setAuthError('Unable to verify password. Try again.')
+      }
+    }
+
+    return <PasswordModal onSubmit={unlock} error={authError} loading={false} />
+  }
 
   const current = projects.find(p => p.id === currentId)
 
@@ -282,8 +353,7 @@ export default function AgentForge() {
         <Sidebar projects={projects} currentId={currentId}
           onSelect={id => { setCurrentId(id); setTab('setup') }}
           onNew={() => setShowNewModal(true)}
-          onDelete={deleteProject}
-          onChangeKey={() => setShowKeyModal(true)} />
+          onDelete={deleteProject} />
 
         <div className={styles.main}>
           {!current ? (
