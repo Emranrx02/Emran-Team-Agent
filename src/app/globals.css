@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; width: 100%; font-family: 'Inter', sans-serif; background: #0d0f14; color: #e8eaf0; overflow: hidden; }
+
+:root {
+  --bg: #0d0f14; --surface: #13161e; --surface2: #1a1e2a; --surface3: #212638;
+  --border: #2a2f42; --accent: #10a37f; --accent2: #34d399;
+  --green: #34d399; --red: #f87171; --text: #e8eaf0; --muted: #6b7280; --muted2: #9ca3af;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
