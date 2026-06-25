@@ -1,27 +1,27 @@
 # Agent Emran 🤖
 
-Emran-এর personal community handling project. Fast community response er jonno ekta AI agent use kora hoy, jate common question, reply, ar support-style communication aro quick hoye jay.
+Emran's personal community support project. It uses an AI agent to help deliver faster responses to common questions, replies, and support-style conversations.
 
 ## About
 
-Eta ekta custom AI agent builder, jeta community-focused workflow er jonno design kora. Project-ta mainly Emran er personal use ar community support handling er kaj-e help korar jonno banano.
+This project is a custom AI agent builder designed for community-focused workflows. It was created to help Emran manage personal community support more efficiently.
 
 ## Key Features
 
-- Community response automate korte help kore
-- Fast reply workflow support kore
-- Custom agent knowledge base use korte pare
-- Personal project setup and project-wise agent train kora jay
+- Helps automate community responses
+- Supports a fast reply workflow
+- Uses a custom knowledge base for each project
+- Allows project setup and agent training per project
 
-## Local-এ Run করতে চাইলে
+## Run Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-তারপর browser-এ যাও: http://localhost:3000
+Then open: [http://localhost:3000](http://localhost:3000)
 
 ## API Key
 
-App চালাতে API key লাগবে. Settings/config screen theke key add korte hobe.
+The app requires an API key. Add it from the settings or configuration screen.
