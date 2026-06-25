@@ -105,18 +105,19 @@
 
 /* Mobile */
 @media (max-width: 640px) {
-  .app { flex-direction: column; overflow: auto; }
-  .sidebar { width: 100%; min-width: 0; min-height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+  .app { flex-direction: column; min-height: 100%; height: auto; overflow: visible; }
+  .sidebar { width: 100%; min-width: 0; min-height: auto; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
   .sidebarHeader { padding: 14px; }
-  .projectList { max-height: 32dvh; }
-  .main { min-height: calc(100dvh - 220px); }
-  .projectView { min-height: calc(100dvh - 220px); }
+  .projectList { max-height: none; overflow: visible; }
+  .main { min-height: auto; height: auto; overflow: visible; }
+  .projectView { min-height: auto; height: auto; overflow: visible; }
   .topbar { padding: 12px 14px; flex-wrap: wrap; }
   .tabs { padding: 0 14px; }
   .tab { flex: 1; text-align: center; }
-  .panel { padding: 14px; }
-  .chatMessages { padding: 12px 14px; }
-  .chatInputArea { padding: 10px 12px; flex-direction: column; align-items: stretch; }
+  .panel { padding: 14px; overflow: visible; }
+  .chatPanel { min-height: auto; overflow: visible; }
+  .chatMessages { padding: 12px 14px; overflow: visible; }
+  .chatInputArea { padding: 10px 12px; flex-direction: column; align-items: stretch; position: sticky; bottom: 0; }
   .btnSend { width: 100%; }
   .msg { max-width: 100%; }
   .modal { width: min(420px, 92vw); padding: 20px; }
