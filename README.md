@@ -1,22 +1,17 @@
-# AgentForge 🤖
+# Agent Emran 🤖
 
-Custom AI agent builder powered by GPT-4o-mini.
+Emran-এর personal community handling project. Fast community response er jonno ekta AI agent use kora hoy, jate common question, reply, ar support-style communication aro quick hoye jay.
 
-## Deploy to Vercel (5 মিনিটে!)
+## About
 
-### Step 1 — GitHub-এ Upload করো
-1. [github.com](https://github.com) এ যাও
-2. **New repository** বানাও — নাম দাও `agentforge`
-3. এই folder-এর সব files upload করো
+Eta ekta custom AI agent builder, jeta community-focused workflow er jonno design kora. Project-ta mainly Emran er personal use ar community support handling er kaj-e help korar jonno banano.
 
-### Step 2 — Vercel-এ Deploy করো
-1. [vercel.com](https://vercel.com) এ যাও
-2. GitHub account দিয়ে login করো
-3. **Add New Project** → তোমার `agentforge` repo select করো
-4. **Deploy** চাপো — ব্যস!
+## Key Features
 
-Vercel automatically detect করবে যে এটা Next.js project।
-তুমি একটা link পাবে: `https://agentforge-xxx.vercel.app`
+- Community response automate korte help kore
+- Fast reply workflow support kore
+- Custom agent knowledge base use korte pare
+- Personal project setup and project-wise agent train kora jay
 
 ## Local-এ Run করতে চাইলে
 
@@ -27,7 +22,6 @@ npm run dev
 
 তারপর browser-এ যাও: http://localhost:3000
 
-## OpenAI API Key
+## API Key
 
-App খুললে key চাইবে। Key পেতে:
-- platform.openai.com → API Keys → Create new secret key
+App চালাতে API key লাগবে. Settings/config screen theke key add korte hobe.
